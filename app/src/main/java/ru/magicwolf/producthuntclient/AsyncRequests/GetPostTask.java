@@ -21,7 +21,7 @@ public class GetPostTask extends AsyncTask<String, Integer, Post>  {
     protected Post doInBackground(final String... params) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("api.producthunt.com/")
+                .baseUrl("https://api.producthunt.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -29,13 +29,13 @@ public class GetPostTask extends AsyncTask<String, Integer, Post>  {
 
         Map<String, String> headers = new HashMap<>();
 
-        String authorization = "Bearer " + Resources.getSystem().getString(R.string.acсess_token);
+        String authorization = "Bearer " + params[0]; // params[0] - access_token
         headers.put("Accept", "application/json");
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", authorization);
         headers.put("Host", "api.producthunt.com");
 
-        Call<GetPostPOJO> call = api.getPost(headers, params[0]); // params[0] - post id
+        Call<GetPostPOJO> call = api.getPost(headers, params[1]); // params[1] - post id
 
         try {
             return call.execute().body().post;

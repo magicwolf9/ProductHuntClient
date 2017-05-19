@@ -15,6 +15,6 @@ import ru.magicwolf.producthuntclient.R;
 import static android.R.attr.value;
 
 public interface GetCategoriesAPI {
-    @GET("v1/categories")
+    @GET("/v1/categories")
     Call<GetCategoriesPOJO> getCategories(@HeaderMap Map<String, String> headers );
 }

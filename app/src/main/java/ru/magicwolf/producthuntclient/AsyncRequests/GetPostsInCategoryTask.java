@@ -26,7 +26,7 @@ public class GetPostsInCategoryTask extends AsyncTask<String, Integer, List<Post
     protected List<Post> doInBackground(String... params) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("api.producthunt.com/")
+                .baseUrl("https://api.producthunt.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -34,13 +34,13 @@ public class GetPostsInCategoryTask extends AsyncTask<String, Integer, List<Post
 
         Map<String, String> headers = new HashMap<>();
 
-        String authorization = "Bearer " + Resources.getSystem().getString(R.string.acсess_token);
+        String authorization = "Bearer " + params[0]; //params[0] - access_token
         headers.put("Accept", "application/json");
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", authorization);
         headers.put("Host", "api.producthunt.com");
 
-        Call<GetPostsInCategoryPOJO> call = api.getPosts(headers, params[0]); //param[0] - категория, для которой нужно получиться новости
+        Call<GetPostsInCategoryPOJO> call = api.getPosts(headers, params[1]); //param[1] - категория, для которой нужно получиться новости
 
 
         try {

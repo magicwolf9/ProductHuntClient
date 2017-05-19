@@ -4,16 +4,10 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,7 +21,7 @@ public class GetCategoriesTask extends AsyncTask<String, Integer, List<Category>
     protected List<Category> doInBackground(final String... params) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("api.producthunt.com/")
+                .baseUrl("https://api.producthunt.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -35,7 +29,7 @@ public class GetCategoriesTask extends AsyncTask<String, Integer, List<Category>
 
         Map<String, String> headers = new HashMap<>();
 
-        String authorization = "Bearer " + Resources.getSystem().getString(R.string.acсess_token);
+        String authorization = "Bearer " + params[0]; //params[0] = access_token
         headers.put("Accept", "application/json");
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", authorization);
