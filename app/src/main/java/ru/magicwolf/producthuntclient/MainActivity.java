@@ -1,7 +1,10 @@
 package ru.magicwolf.producthuntclient;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -83,23 +88,25 @@ public class MainActivity extends AppCompatActivity
         Log.i("INFO", "ItemId = " + name);
                 RequestToAPI requestToAPI = new RequestToAPI();
         List<Post> postList = requestToAPI.LoadPostsInCategory(this.getResources().getString(R.string.acсess_token), name);
+
+        LinearLayout fContainer = (LinearLayout) findViewById(R.id.newsContainer);
+        if(fContainer.getChildCount() > 0) fContainer.removeAllViews();
+
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         for(int i = 0; i < postList.size(); i++) {
-            Log.i("INFO", "Post number" + i +" =  "+ postList.get(i).discussionUrl + "   catId =" + postList.get(i).categoryId + "    itemId = " + name); // Дописать ловлю ошибки если в категории нет постов
+            //Log.i("INFO", "Post number" + i +" =  "+ postList.get(i).thumbnail.imageUrl + "   catId =" + postList.get(i).categoryId + "    itemId = " + name); // Дописать ловлю ошибки если в категории нет постов
+            OneNewsFragment oneNews = new OneNewsFragment();
+            Bundle toFragmentBundle = new Bundle();
+            toFragmentBundle.putString("thumbnailURL", postList.get(i).thumbnail.imageUrl);
+            toFragmentBundle.putString("newsName", postList.get(i).name);
+            toFragmentBundle.putString("newsDescription", postList.get(i).tagline);
+            toFragmentBundle.putString("upVotesCount", postList.get(i).votesCount.toString());
+            oneNews.setArguments(toFragmentBundle);
+            fragmentTransaction.add(R.id.newsContainer, oneNews);
         }
+        fragmentTransaction.commit();
 
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

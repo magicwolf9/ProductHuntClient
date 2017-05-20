@@ -17,6 +17,9 @@ public class Post {
     @SerializedName("name")
     @Expose
     public String name;
+    @SerializedName("tagline")
+    @Expose
+    public String tagline;
     @SerializedName("created_at")
     @Expose
     public String createdAt;
