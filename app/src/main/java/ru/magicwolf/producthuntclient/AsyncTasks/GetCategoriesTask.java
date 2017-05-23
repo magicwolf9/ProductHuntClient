@@ -1,6 +1,5 @@
-package ru.magicwolf.producthuntclient.AsyncRequests;
+package ru.magicwolf.producthuntclient.AsyncTasks;
 
-import android.content.res.Resources;
 import android.os.AsyncTask;
 
 import java.io.IOException;
@@ -13,7 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.magicwolf.producthuntclient.POJOs.Category;
 import ru.magicwolf.producthuntclient.POJOs.GetCategoriesPOJO;
-import ru.magicwolf.producthuntclient.R;
 import ru.magicwolf.producthuntclient.RetrofitAPIs.GetCategoriesAPI;
 
 public class GetCategoriesTask extends AsyncTask<String, Integer, List<Category>>  {

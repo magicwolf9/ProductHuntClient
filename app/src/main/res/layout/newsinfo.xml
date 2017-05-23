@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ru.magicwolf.producthuntclient.MainActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:id="@+id/newsinfo">
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"/>
+
+    <ImageView
+        android:id="@+id/newsScreenshot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/newsNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newsScreenshot"
+        android:layout_margin="10dp"
+        android:textSize="26sp"/>
+
+    <TextView
+        android:id="@+id/newsDescriptionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newsNameTV"
+        android:layout_margin="10dp"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btnGetIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/btnGetIt"
+        android:textSize="20sp"
+        android:layout_below="@id/newsDescriptionTV" />
+
+    <TextView
+        android:id="@+id/upVotesCountTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/btnGetIt"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

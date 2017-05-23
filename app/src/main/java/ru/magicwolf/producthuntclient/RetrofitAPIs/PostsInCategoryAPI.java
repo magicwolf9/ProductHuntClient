@@ -9,9 +9,10 @@ import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import ru.magicwolf.producthuntclient.POJOs.GetPostsInCategoryPOJO;
 
 public interface PostsInCategoryAPI {
-    @GET("/v1/posts/all")
-    Call<GetPostsInCategoryPOJO> getPosts(@HeaderMap Map<String, String> headers, @Query("search[category]") String category);
+    @GET
+    Call<GetPostsInCategoryPOJO> getPosts(@HeaderMap Map<String, String> headers, @Url String url);
 }
