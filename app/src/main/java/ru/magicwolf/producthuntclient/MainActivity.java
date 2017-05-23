@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         drawer.addDrawerListener(toggle);
 
-        postListView = (LinearLayout) findViewById(R.id.newsContainer);
-        newsInfo = (RelativeLayout) findViewById(R.id.newsinfo);
+        postListView = (LinearLayout) findViewById(R.id.newsContainer); // контейнер для списка продуктов
+        newsInfo = (RelativeLayout) findViewById(R.id.newsinfo); // страница продукта
 
         newsInfo.setVisibility(View.GONE);
 
@@ -168,9 +168,8 @@ public class MainActivity extends AppCompatActivity
                 WebView webview = new WebView(getApplicationContext()) {
                     @Override
                     public boolean onKeyDown(int keyCode, KeyEvent event) {
-                        if ((keyCode == KeyEvent.KEYCODE_BACK) ) {
-                            this.clearHistory(); // clear history
-                            finish(); // finish activity
+                        if ((keyCode == KeyEvent.KEYCODE_BACK) ) { // Ловля нажатия кнопки назад
+                            finish();
                             return true;
                         }
 
